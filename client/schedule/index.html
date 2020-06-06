@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Pickup Order,  Date &amp; Time</title>
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<main>
+  <div class="inner">
+    
+    <h2>
+      Pickup
+    </h2>
+    
+    <h1>
+      Date &amp; Time
+    </h1>
+    
+    <form
+      id="date-and-time" 
+		  class="date-and-time" 
+		  method=""
+    >
+      
+      <!-- Date -->
+      <span 
+        class="date-wrapper select-wrapper faux-select"
+      >
+
+        <!-- Pickup Date - Select -->
+        <select 
+          id="pickup-date-select" 
+          class="pickup-date-select select faux-select" 
+          data-placeholder-name="&#40; Choose your pick up date &#41;" 
+          size="1" 
+        >
+
+          <!-- Dynamically populate the date options,
+          adding Today, and 6 weeks into the future -->
+
+        </select>
+
+
+        <!-- Date - faux-select element, 
+        can render inline or block  -->
+        <a 
+          id="date-rendered" 
+          class="date-rendered faux-select-rendered" 
+          tabindex="-1"
+          href="#" 
+        >
+          <!-- Match the default DATE value here to the 
+          default selected <option> element above -->
+          Today</a
+        >
+
+      </span>
+      <!-- / Date -->
+      
+      <br/>
+      
+      <!-- text -->
+      <span 
+        class="text" 
+      >
+        at
+      </span>
+      
+      <!-- Time -->
+      <span 
+        class="time-wrapper select-wrapper faux-select"
+      >
+
+        <!-- Pickup Time - Select -->
+        <select 
+          id="time-select" 
+          class="time-select select" 
+          data-placeholder-name="&#40; Choose your pick up time &#41;" 
+          size="1" 
+        >
+          
+          <!-- 
+            NOTE: ideal state would be 
+            to populate the options  
+            below dynamically with shop  
+            hours for the specific date  
+            the customer selects. Typically  
+            this is governed by the day of 
+            the week.
+
+            Hard coding for now.
+
+            Demo hours: 11:00 am - 11:00 pm
+          -->
+          
+
+          <!-- Tool Tip, disabled option -->
+          <option 
+            value="" 
+            disabled 
+          >
+            Choose your pick up time
+          </option>
+
+
+          <option disabled></option>
+
+
+          <option 
+            value="11:00 am"
+          >11:00 am</option>
+          <option 
+            value="11:15 am"
+          >11:15 am</option>
+          <option 
+            value="11:30 am"
+          >11:30 am</option>
+          <option 
+            value="11:45 am"
+          >11:45 am</option>
+
+
+          <option disabled></option>
+
+
+          <option 
+            value="12:00 pm" 
+          >12:00 pm</option>
+          <option 
+            value="12:15 pm" 
+          >12:15 pm</option>
+          <option 
+            value="12:30 pm" 
+          >12:30 pm</option>
+          <option 
+            value="12:45 pm" 
+          >12:45 pm</option>
+
+
+          <option disabled></option>
+
+
+          <option 
+            value="1:00 pm" 
+          >1:00 pm</option>
+          <option 
+            value="1:15 pm" 
+          >1:15 pm</option>
+          <option 
+            value="1:30 pm" 
+          >1:30 pm</option>
+          <option 
+            value="1:45 pm" 
+          >1:45 pm</option>
+
+
+          <option disabled></option>
+
+
+          <option 
+            value="2:00 pm" 
+          >2:00 pm</option>
+          <option 
+            value="2:15 pm" 
+          >2:15 pm</option>
+          <option 
+            value="2:30 pm" 
+          >2:30 pm</option>
+          <option 
+            value="2:45 pm" 
+          >2:45 pm</option>
+
+
+          <option disabled></option>
+
+
+          <option 
+            value="3:00 pm" 
+          >3:00 pm</option>
+          <option 
+            value="3:15 pm" 
+          >3:15 pm</option>
+          <option 
+            value="3:30 pm" 
+          >3:30 pm</option>
+          <option 
+            value="3:45 pm" 
+          >3:45 pm</option>
+
+
+          <option disabled></option>
+
+
+          <option 
+            value="4:00 pm" 
+          >4:00 pm</option>
+          <option 
+            value="4:15 pm" 
+          >4:15 pm</option>
+          <option 
+            value="4:30 pm" 
+          >4:30 pm</option>
+          <option 
+            value="4:45 pm" 
+          >4:45 pm</option>
+
+
+          <option disabled></option>
+
+
+          <option 
+            value="5:00 pm" 
+            selected
+          >5:00 pm</option>
+          <option 
+            value="5:15 pm" 
+          >5:15 pm</option>
+          <option 
+            value="5:30 pm" 
+          >5:30 pm</option>
+          <option 
+            value="5:45 pm" 
+          >5:45 pm</option>
+        
+        
+          <option disabled></option>
+
+
+          <option 
+            value="6:00 pm" 
+          >6:00 pm</option>
+          <option 
+            value="6:15 pm" 
+          >6:15 pm</option>
+          <option 
+            value="6:30 pm" 
+          >6:30 pm</option>
+          <option 
+            value="6:45 pm" 
+          >6:45 pm</option>
+        
+        
+          <option disabled></option>
+
+
+          <option 
+            value="7:00 pm" 
+          >7:00 pm</option>
+          <option 
+            value="7:15 pm" 
+          >7:15 pm</option>
+          <option 
+            value="7:30 pm" 
+          >7:30 pm</option>
+          <option 
+            value="7:45 pm" 
+          >7:45 pm</option>
+        
+        
+          <option disabled></option>
+
+
+          <option 
+            value="8:00 pm" 
+          >8:00 pm</option>
+          <option 
+            value="8:15 pm" 
+          >8:15 pm</option>
+          <option 
+            value="8:30 pm" 
+          >8:30 pm</option>
+          <option 
+            value="8:45 pm" 
+          >8:45 pm</option>
+        
+        
+          <option disabled></option>
+
+
+          <option 
+            value="9:00 pm" 
+          >9:00 pm</option>
+          <option 
+            value="9:15 pm" 
+          >9:15 pm</option>
+          <option 
+            value="9:30 pm" 
+          >9:30 pm</option>
+          <option 
+            value="9:45 pm" 
+          >9:45 pm</option>
+        
+        
+          <option disabled></option>
+
+
+          <option 
+            value="10:00 pm" 
+          >10:00 pm</option>
+          <option 
+            value="10:15 pm" 
+          >10:15 pm</option>
+          <option 
+            value="10:30 pm" 
+          >10:30 pm</option>
+          <option 
+            value="10:45 pm" 
+          >10:45 pm</option>
+        
+        
+          <option disabled></option>
+          <option disabled>Shop closes at 11:00 pm</option>
+
+
+        </select>
+
+
+        <!-- TIME - faux-select element, 
+        can render inline or block  -->
+        <a 
+          id="time-rendered" 
+          class="time-rendered faux-select-rendered" 
+          tabindex="-1"
+          href="#" 
+        >
+          <!-- Match the default TIME value here to the 
+          default selected <option> element above -->
+          5:00 pm</a
+        >
+
+      </span>
+      <!-- / Time -->
+      
+      <div>
+        <a
+           href="" 
+           class="bttn submit"
+        >
+          Next
+        </a>
+      </div>
+      
+    </form>
+    
+  </div>
+</main>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
