@@ -27,7 +27,7 @@ func (store *Store) GetGroupByID(id int64) (*model.Group, error) {
 //InsertGroup inserts the Group into the database, and returns
 //the newly-inserted GroupID, complete with the DBMS-assigned ID
 func (store *Store) InsertGroup(group *model.Group) (int64, error) {
-	loc := time.FixedZone("UTC-8", -8*60*60)
+	loc := time.FixedZone("UTC-7", -7*60*60)
 
 	res, err := store.Db.Exec(queryInsertGroup, group.Name, group.Description, group.CreatorID, time.Now().In(loc).Format(time.UnixDate))
 	if err != nil {

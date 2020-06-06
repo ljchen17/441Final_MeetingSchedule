@@ -1,5 +1,5 @@
-This server handles non-registered users.
+This is the main gate for the whole server
 
-A non-registered user can join a meeting with an inviting links, but can't create meeting
+It handles request and sends to different sub-servers accordingly
 
-A non-registered user can register to be a registered user
+It also deals with sessions

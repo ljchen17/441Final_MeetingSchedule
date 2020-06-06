@@ -18,7 +18,7 @@ var queryGetAllParticipants = "SELECT user.uid, email, userName, firstName, last
 var queryInsertParticipant = "INSERT INTO meetingparticipant(MeetingID, uid) VALUES(?,?)"
 var queryDeleteParticipantsOfMeeting = "DELETE FROM meetingparticipant WHERE meetingID = ?"
 
-var defaultTime = "" // format： "Mon Jan 2 15:04:05 -0700 MST 2006"
+var defaultTime = "" // format： "Mon Jan 2 15:04:05 -0700 UST-7 2006"
 var defaultConfrim = 0
 
 // var defaultErrorMsg = "handle meetings"
