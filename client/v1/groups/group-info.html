@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Group information</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="./groups.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<ul class="main">
+  <li class="title">
+    <h3>Group Info</h3>
+    <p>ID:</p>
+    <div id="group_id"></div>
+    <a class="elem-name" href="group-edit.html?id=1" id="edit_link">Update Information</a>
+  </li>
+  <li class= "elems">
+    <ul class="elems-detail">
+      <li>
+        <span class="elem-title" >Group Name: </span>
+          <span class="elem-name" id="group_name">name placeholder</span>
+          <br />
+      </li>
+       
+       <li>
+        <span class="elem-title">Description: </span>
+        <span class="elem-name" id="description">description placeholder</span>
+      </li>
+      
+       <li>
+        <span class="elem-title">Create Date: </span>
+        <span class="elem-name" id="create_date">placeholder</span>
+        <br />
+      </li>
+      
+       <li>
+          <a href="#">
+            <span class="elem-title">Creator ID: </span>
+            <span class="elem-name" id="creator_id">placeholder</span>
+            <br />
+          </a>
+      </li>
+      
+    </ul>  
+    
+  
+  </li>
+         
+  <li class="title">
+  <h3>Meetings</h3>
+  <br />
+  <a class="elem-name" href="meeting-create.html" id="create_url">
+    Create Meeting
+  </a>
+  </li>
+  <li class= "elems">
+    <ul class="elems-detail" id="meeting_list">
+      <li>
+        <a href="#">
+          <span class="elem-title">Meeting Name:</span>
+          <span class="elem-name" id="m1">placeholder</span>
+          <br />
+          <p class="elem-name" id="d1">placeholder</p>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <span class="elem-title">Meeting Name:</span>
+          <span class="elem-name" id="m2">placeholder</span>
+          <br />
+          <span class="elem-title">Description:</span>
+          <span class="elem-name" id="d2">placeholder</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <span class="elem-title">Meeting Name:</span>
+          <span class="elem-name" id="m2">placeholder</span>
+          <br />
+          <span class="elem-title">Description:</span>
+          <span class="elem-name" id="d2">placeholder</span>
+        </a>
+      </li>
+       
+    </ul>  
+    
+  
+  </li>
+
+  <li class="title">
+    <h3>Members</h3>
+    <br />
+    <a class="elem-title" href="#" id="inivte_url">
+      Invite People
+    </a>
+    </li>
+    <li class= "elems">
+      <ul class="elems-detail" id="member_list">
+        <li>
+          <a href="#">
+            <span class="elem-title" id="user1">name placeholder</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="elem-title" id="user2">name placeholder</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="elem-title" id="user3">name placeholder</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="elem-title" id="user4">name placeholder</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="elem-title" id="user5">name placeholder</span>
+          </a>
+        </li>
+  
+         
+      </ul>  
+      
+    
+    </li>
+         
+</ul>
+<!-- partial -->
+
+<script src="groups.js"></script>  
+
+
+</body>
+</html>

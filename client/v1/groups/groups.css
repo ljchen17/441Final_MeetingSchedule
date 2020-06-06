@@ -119,7 +119,7 @@ h3 {
   font-size: .8em;
 }
 
-.events {
+.elems {
   float: left;
   width: 80%;
   border-left: 1px solid #ccc;
@@ -127,26 +127,26 @@ h3 {
   padding-top: 3%;
 }
 
-.events-detail {
+.elems-detail {
   max-width: 550px;
 }
 
-.events-detail li {
+.elems-detail li {
   padding: 10px;
   border-bottom: 1px dashed #ccc;
   line-height: 22px;
   transition: ease .4s all;
 }
 
-.events-detail li:hover {
+.elems-detail li:hover {
   background: #e9e9e9;
 }
 
-.event-time {
+.elem-title {
   font-weight: 900;
 }
 
-.events-detail li a {
+.elems-detail li a {
   text-decoration: none;
   color: #444;
   width: 100%;
@@ -154,7 +154,7 @@ h3 {
   display: block;
 }
 
-.event-location {
+.elem-location {
   font-size: .8em;
   color: tomato;
   margin-left: 70px;
@@ -167,13 +167,13 @@ h3 {
     margin-bottom: 10px;
   }
 
-  .events {
+  .elems {
     border: none;
     width: 100%;
     margin-top: 0;
   }
 
-  .events-detail {
+  .elems-detail {
     padding: 0;
   }
 
