@@ -16,15 +16,15 @@ docker run -d -e MYSQL_ROOT_PASSWORD=Hdkme7294 --name ljchen17mysqldemo -p 3306:
 
 docker rm -f ljchen17group
 docker pull ljchen17/group
-docker run -d --name ljchen17group -p 5100:5100 -e ADDR=:5100 ljchen17/group
+docker run -d --name ljchen17group -p 8100:8100 -e ADDR=:8100 ljchen17/group
 
 docker rm -f ljchen17guest
 docker pull ljchen17/guest
-docker run -d --name ljchen17guest -p 5200:5200 --network=mainnetwork ljchen17/guest
+docker run -d --name ljchen17guest -p 8200:8200 --network=mainnetwork ljchen17/guest
 
 docker rm -f ljchen17gateway
 docker pull ljchen17/gateway
-docker run -d --name ljchen17gateway -p 443:443 -v /etc/letsencrypt:/etc/letsencrypt:ro -e TLSCERT=/etc/letsencrypt/live/api.ljchen17.me/fullchain.pem -e TLSKEY=/etc/letsencrypt/live/api.ljchen17.me/privkey.pem -e SESSIONKEY=hfewi1 -e REDISADDR=ljchen17redis:6379 -e DSN="root:Hdkme7294@tcp(ljchen17mysqldemo:3306)/INFO441"  -e GROUPADDR=ljchen17group:5200 -e GUESTADDR=ljchen17guest:5100 ljchen17/gateway
+docker run -d --name ljchen17gateway -p 443:443 -v /etc/letsencrypt:/etc/letsencrypt:ro -e TLSCERT=/etc/letsencrypt/live/api.ljchen17.me/fullchain.pem -e TLSKEY=/etc/letsencrypt/live/api.ljchen17.me/privkey.pem -e SESSIONKEY=hfewi1 -e REDISADDR=ljchen17redis:6379 -e DSN="root:Hdkme7294@tcp(ljchen17mysqldemo:3306)/INFO441"  -e GROUPADDR=ljchen17group:8100 -e GUESTADDR=ljchen17guest:8200 ljchen17/gateway
 
 docker network connect mainnetwork ljchen17gateway
 docker network connect mainnetwork ljchen17redis

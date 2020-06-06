@@ -5,7 +5,6 @@ import (
 	"MeetingScheduler/servers/gateway/model"
 	"MeetingScheduler/servers/gateway/sessions"
 	"database/sql"
-	"encoding/json"
 	"log"
 	"net/http"
 	"net/http/httputil"
@@ -45,8 +44,8 @@ func main() {
 		ADDR = ":443"
 	}
 
-	tlsKey := reqEnv("TLSKEY")
-	tlsCert := reqEnv("TLSCERT")
+	// tlsKey := reqEnv("TLSKEY")
+	// tlsCert := reqEnv("TLSCERT")
 	sessionKey := reqEnv("SESSIONKEY")
 	redisAddr := reqEnv("REDISADDR")
 	dsn := reqEnv("DSN")
@@ -96,13 +95,13 @@ func main() {
 		}
 
 		// Respond to client
-		response, err := json.Marshal(stateRet.User)
-		if err != nil {
-			return
-		}
+		// response, err := json.Marshal(stateRet.User)
+		// if err != nil {
+		// 	return
+		// }
 
 		if stateRet.User != nil {
-			r.Header.Set("X-User", string(response))
+			r.Header.Set("X-User", stateRet.User.UID)
 		}
 
 		r.Header.Add("X-Forwarded-Host", r.Host)
@@ -127,5 +126,6 @@ func main() {
 	// Start the server
 	log.Printf("Server is listening at %s...", ADDR)
 	log.Fatal(http.ListenAndServeTLS(ADDR, tlsCert, tlsKey, handlers.SetCors(r)))
+	// log.Fatal(http.ListenAndServe(ADDR, handlers.SetCors(r)))
 
 }
