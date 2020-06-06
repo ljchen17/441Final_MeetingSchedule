@@ -119,10 +119,6 @@ h3 {
   font-size: .8em;
 }
 
-.tim{
-  color: black;
-}
-
 .events {
   float: left;
   width: 80%;
@@ -165,7 +161,7 @@ h3 {
 }
 
 @media all and (max-width: 641px) {
-  .date {
+  .title {
     width: 100%;
     border-bottom: 1px solid #ccc;
     margin-bottom: 10px;
@@ -181,7 +177,7 @@ h3 {
     padding: 0;
   }
 
-  li.date p {
+  li.title p {
     margin: 0;
   }
 }
