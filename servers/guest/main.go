@@ -1,14 +1,15 @@
 package main
 
 import (
+	"MeetingScheduler/servers/guest/handler"
 	"MeetingScheduler/servers/guest/model"
 	"database/sql"
 	"log"
 	"net/http"
 	"os"
 
-	"github.com/gorilla/mux"
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/gorilla/mux"
 )
 
 /**
@@ -29,7 +30,7 @@ func main() {
 
 	//context
 	ctx := handler.Context{
-		Store: &model.GuestStore{db}
+		Store: &model.GuestStore{Db: db},
 	}
 
 	// Create mux and set up handler
@@ -41,6 +42,6 @@ func main() {
 
 	// // Start the server
 	log.Printf("Server is listening at %s...", ADDR)
-	log.Fatal(http.ListenAndServe(ADDR, route))
+	log.Fatal(http.ListenAndServe(ADDR, r))
 
 }

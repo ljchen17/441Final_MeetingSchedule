@@ -10,10 +10,11 @@ type GroupInvitation struct {
 	CreateDate  string `json:"createDate"`
 }
 
-// GroupInvitation stores group information that a guest can view
+//Group struct contains fileds of a group of users
 type Group struct {
-	GroupName   string `json:"meetingName"`
-	GroupDetail string `json:"meetingDetail"`
-	CreatedID   string `json:"createdID"`
+	GroupID     int64  `json:"groupID"`
+	Description string `json:"description"`
+	Name        string `json:"name"`
+	CreatorID   int64  `json:"creatorID"`
 	CreateDate  string `json:"createDate"`
 }

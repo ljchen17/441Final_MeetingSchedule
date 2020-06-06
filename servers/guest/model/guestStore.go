@@ -16,7 +16,7 @@ var updateSchedule = "UPDATE schedule SET votes = votes+1 WHERE scheduleID = ?"
 var deleteGuest = "DELETE FROM guest WHERE guestID = ?"
 
 //GetAllSchedule returns all schedules unser a meeting
-func (store *Store) GetAllSchedule(meetingID int64) ([]*Schedule, error) {
+func (store *GuestStore) GetAllSchedule(meetingID int64) ([]*Schedule, error) {
 
 	var schedules []*Schedule
 	//uid, email, userName, firstName, lastName
@@ -41,34 +41,34 @@ func (store *Store) GetAllSchedule(meetingID int64) ([]*Schedule, error) {
 }
 
 //GetMeetingInfo looks for the meeting with given meeting id
-func (store *Store) GetMeetingInfo(meetingID int64) (*Meeting, error) {
+func (store *GuestStore) GetMeetingInfo(meetingID int64) (*Meeting, error) {
 	var meeting Meeting
 	// Execute the query
-	err := store.Db.QueryRow(queryGetMeeting, id).Scan(&meeting.Name,
+	err := store.Db.QueryRow(getMeetingInfo, meetingID).Scan(&meeting.Name,
 		&meeting.Description, &meeting.StartTime, &meeting.EndTime,
 		&meeting.CreateDate, &meeting.Confirmed)
 	return &meeting, err
 }
 
 //GetGroupByID returns the Group with the given ID
-func (store *Store) GetGroupByID(id int64) (*Group, error) {
+func (store *GuestStore) GetGroupByID(id int64) (*Group, error) {
 	var group Group
 	err := store.Db.QueryRow(getGroupInfo, id).Scan(&group.Name, &group.Description, &group.CreateDate, &group.CreatorID)
 	return &group, err
 }
 
 //GetGuest looks for the guest with given guest id
-func (store *Store) GetGuest(guestID int64) (*Guest, error) {
+func (store *GuestStore) GetGuest(guestID int64) (*Guest, error) {
 	var guest Guest
 	// Execute the query
 	//Email, DisplayName, Confirmed, GuestID, GroupID, MeetingID, InvitedBy
-	err := store.Db.QueryRow(getGuestInfo, id).Scan(&guest.Email, &guest.DisplayName, &guest.Confirmed, &guest.GuestID,
+	err := store.Db.QueryRow(getGuestInfo, guestID).Scan(&guest.Email, &guest.DisplayName, &guest.Confirmed, &guest.GuestID,
 		&guest.GroupID, &guest.MeetingID, &guest.InvitedBy)
 	return &guest, err
 }
 
 //Vote increase the votes for a Schedule
-func (store *Store) Vote(id int64) (int, error) {
+func (store *GuestStore) Vote(id int64) (int, error) {
 	_, err := store.Db.Exec(updateSchedule, id)
 	if err != nil {
 		return 0, err
@@ -79,7 +79,7 @@ func (store *Store) Vote(id int64) (int, error) {
 }
 
 //DeleteGuest deletes the Schedule with the given ID
-func (store *Store) DeleteGuest(id int64) error {
+func (store *GuestStore) DeleteGuest(id int64) error {
 	_, err := store.Db.Exec(deleteGuest, id)
 	return err
 }
