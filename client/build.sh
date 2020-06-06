@@ -1,0 +1,1 @@
+docker build -t ljchen17/meetingclient .
