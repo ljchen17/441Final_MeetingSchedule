@@ -55,13 +55,32 @@ func (ctx *Context) MeetingGuestHandler(w http.ResponseWriter, r *http.Request) 
 		return
 	}
 
+	// parse guest id
+	gid := path.Dir(path.Dir(path.Base(r.URL.Path)))
+	guestID := getIDfromURL(w, r, gid)
+	if guestID < 0 {
+		return
+	}
+
 	meeting, err := ctx.Store.GetMeetingInfo(mid)
 	if !dbErrorHandle(w, "Get meeting by ID", err) {
 		return
 	}
 
+	guest, err := ctx.Store.GetGuest(guestID)
+	if !dbErrorHandle(w, "Get guest by ID", err) {
+		return
+	}
+
+	schedules, err := ctx.Store.GetAllSchedule(mid)
+	if !dbErrorHandle(w, "Get schedules", err) {
+		return
+	}
+
+	displayMeeting := model.CreateMeetingInfo(meeting, guest, schedules)
+
 	// marshal current group into response body
-	response := marshalRep(w, meeting)
+	response := marshalRep(w, displayMeeting)
 	if response == nil {
 		return
 	}
