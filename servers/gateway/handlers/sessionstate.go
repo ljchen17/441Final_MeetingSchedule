@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"MeetingScheduler/servers/user/model"
+	"MeetingScheduler/servers/gateway/model"
 	"time"
 )
 

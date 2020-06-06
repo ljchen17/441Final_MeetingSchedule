@@ -1,11 +1,10 @@
 package handlers
 
 import (
-	"MeetingScheduler/servers/user/model"
-	"MeetingScheduler/servers/user/sessions"
+	"MeetingScheduler/servers/gateway/model"
+	"MeetingScheduler/servers/gateway/sessions"
 	"encoding/json"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"path"
 	"strconv"
@@ -23,8 +22,6 @@ func (ctx *HandlerCtx) UsersHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Check request method
 	if r.Method == "POST" {
-
-		log.Println("999999999999999999")
 
 		// Check content type
 		ctype := r.Header.Get("Content-Type")
@@ -61,7 +58,6 @@ func (ctx *HandlerCtx) UsersHandler(w http.ResponseWriter, r *http.Request) {
 		user, err = ctx.UserStore.Insert(user)
 		if err != nil {
 
-			log.Println("888888888888", err)
 			status := http.StatusInternalServerError
 			if driverErr, ok := err.(*mysql.MySQLError); ok {
 				// Handle duplicate email/username error

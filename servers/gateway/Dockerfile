@@ -6,6 +6,6 @@ FROM alpine
 RUN apk update && apk add ca-certificates && rm -rf /var/cache/apk/*
 #RUN update-ca-certificates
 
-COPY user user
-EXPOSE 5200
-ENTRYPOINT [ "/user" ]
+COPY gateway gateway
+EXPOSE 443
+ENTRYPOINT [ "/gateway" ]
