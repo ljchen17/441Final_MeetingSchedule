@@ -9,6 +9,7 @@ import (
 	"log"
 	"net/http"
 	"net/http/httputil"
+	"net/url"
 	"os"
 	"time"
 
@@ -50,7 +51,7 @@ func main() {
 	redisAddr := reqEnv("REDISADDR")
 	dsn := reqEnv("DSN")
 	groupAddr := reqEnv("GROUPADDR")
-	//guestAddr := reqEnv("GUESTADDR")
+	guestAddr := reqEnv("GUESTADDR")
 
 	// Open redis client
 	redisClient := redis.NewClient(&redis.Options{Addr: redisAddr})
@@ -113,13 +114,15 @@ func main() {
 
 	groupProxy := &httputil.ReverseProxy{Director: groupDirector}
 
-	//guestProxy := httputil.NewSingleHostReverseProxy(&url.URL{Scheme: "http", Host: guestAddr})
+	guestProxy := httputil.NewSingleHostReverseProxy(&url.URL{Scheme: "http", Host: guestAddr})
 
 	r.Handle("/v1/groups", groupProxy)
 	r.Handle("/v1/groups/{group_id}", groupProxy)
 	r.Handle("/v1/groups/{group_id}/meetings", groupProxy)
 	r.Handle("/v1/groups/{group_id}/meetings/{meeting_id}", groupProxy)
 	r.Handle("/v1/groups/{group_id}/meetings/{meeting_id}/schedule", groupProxy)
+
+	r.Handle("/v1/guest", guestProxy)
 
 	// Start the server
 	log.Printf("Server is listening at %s...", ADDR)
