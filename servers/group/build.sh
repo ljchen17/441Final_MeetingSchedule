@@ -1,3 +1,3 @@
 GOOS=linux go build
-docker build -t ice2meu/group .
-docker push ice2meu/group
+docker build -t ljchen17/group .
+docker push ljchen17/group

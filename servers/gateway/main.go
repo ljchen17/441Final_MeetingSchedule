@@ -10,6 +10,7 @@ import (
 	"net/http/httputil"
 	"net/url"
 	"os"
+	"strconv"
 	"time"
 
 	"github.com/go-redis/redis"
@@ -44,8 +45,8 @@ func main() {
 		ADDR = ":443"
 	}
 
-	// tlsKey := reqEnv("TLSKEY")
-	// tlsCert := reqEnv("TLSCERT")
+	tlsKey := reqEnv("TLSKEY")
+	tlsCert := reqEnv("TLSCERT")
 	sessionKey := reqEnv("SESSIONKEY")
 	redisAddr := reqEnv("REDISADDR")
 	dsn := reqEnv("DSN")
@@ -101,7 +102,7 @@ func main() {
 		// }
 
 		if stateRet.User != nil {
-			r.Header.Set("X-User", stateRet.User.UID)
+			r.Header.Set("X-User", strconv.Itoa(int(stateRet.User.UID)))
 		}
 
 		r.Header.Add("X-Forwarded-Host", r.Host)
