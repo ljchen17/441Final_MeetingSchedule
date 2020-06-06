@@ -16,11 +16,11 @@ docker run -d -e MYSQL_ROOT_PASSWORD=Hdkme7294 --name ljchen17mysqldemo -p 3306:
 
 docker rm -f ljchen17group
 docker pull ljchen17/group
-docker run -d --name ljchen17group -p 8100:8100 -e ADDR=:8100 ljchen17/group
+docker run -d --name ljchen17group -p 8100:8100 -e ADDR=:8100 -e DSN="root:Hdkme7294@tcp(ljchen17mysqldemo:3306)/INFO441" ljchen17/group
 
 docker rm -f ljchen17guest
 docker pull ljchen17/guest
-docker run -d --name ljchen17guest -p 8200:8200 --network=mainnetwork ljchen17/guest
+docker run -d --name ljchen17guest -p 8200:8200 -e ADDR=:8200 -e DSN="root:Hdkme7294@tcp(ljchen17mysqldemo:3306)/INFO441" --network=mainnetwork ljchen17/guest
 
 docker rm -f ljchen17gateway
 docker pull ljchen17/gateway
@@ -30,4 +30,3 @@ docker network connect mainnetwork ljchen17gateway
 docker network connect mainnetwork ljchen17redis
 docker network connect mainnetwork ljchen17mysqldemo
 docker network connect mainnetwork ljchen17group
-docker network connect mainnetwork ljchen17guest
