@@ -1,8 +1,8 @@
 package handlers
 
 import (
-	"MeetingScheduler/servers/user/model"
-	"MeetingScheduler/servers/user/sessions"
+	"MeetingScheduler/servers/gateway/model"
+	"MeetingScheduler/servers/gateway/sessions"
 )
 
 // HandlerCtx provides access to context for HTTP handler functions
