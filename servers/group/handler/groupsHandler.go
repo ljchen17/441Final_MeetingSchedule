@@ -653,17 +653,16 @@ func (ctx *Context) UserMeetingsHandler(w http.ResponseWriter, r *http.Request) 
 	}
 
 	if r.Method == "GET" {
-		group, err := ctx.Store.GetAllMeetingsOfUser(uid)
-		if !dbErrorHandle(w, "Get all meetings", err) {
+		groups, err := ctx.Store.GetAllGroupsByUser(uid)
+		if !dbErrorHandle(w, "Get all groups", err) {
 			return
 		}
 
-		res := marshalRep(w, group)
-		if res == nil {
-			return
+		data := TodoPageData{
+			PageTitle: "Group List",
+			Groups:    groups,
 		}
-
-		respondWithHeader(w, typeJSON, res, http.StatusCreated)
+		ctx.Tml.Execute(w, data)
 	}
 
 }

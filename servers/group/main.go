@@ -24,11 +24,13 @@ func main() {
 		log.Fatalf("Error opening database: %v", err)
 	}
 
-	tmpl := template.Must(template.ParseFiles("/static/example.html"))
+	tmpl := template.Must(template.ParseFiles("/static/group_list.html"))
+	// tmpl2 := template.Must(template.ParseFiles("/static/meeting_list.html"))
 	//context
 	ctx := h.Context{
 		Store: &dao.Store{db},
 		Tml:   tmpl,
+		// Tml2:  tmpl2,
 	}
 
 	// handlers

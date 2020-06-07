@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Group information</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="./groups.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<ul class="main">
+  <li class="title">
+    <h3>{{.PageTitle}}</h3>
+    <br />
+    <a class="elem-name" id="edit_link">Update Information</a>
+  </li>
+  <li class= "elems">
+    <ul class="elems-detail">
+        {{range .Groups}}
+        <li>
+            <span class="elem-title" >Group ID: {{.GroupID}}</span>
+              <span class="elem-name" id="group_name"></span>
+              <br />
+          </li>
+      <li>
+        <span class="elem-title" >Group Name: {{.Name}} </span>
+          <span class="elem-name" id="group_name"></span>
+          <br />
+      </li>
+       
+       <li>
+        <span class="elem-title">Description: {{.Description}}</span>
+        <span class="elem-name" id="description"></span>
+      </li>
+      
+       <li>
+        <span class="elem-title">Create Date: {{.CreateDate}}</span>
+        <span class="elem-name" id="create_date"></span>
+        <br />
+      </li>
+      
+       <li>
+            <span class="elem-title">Creator: {{.CreatorID}}</span>
+            <span class="elem-name" id="creator_details"></span>
+            <br />
+      </li>
+      {{end}}
+    </ul>  
+    
+  
+  </li>
+         
+  <li class="title">
+  <h3>Meetings</h3>
+  <br />
+  <a class="elem-name" href="meeting-create.html" id="create_url">
+    Create Meeting
+  </a>
+  </li>
+  <li class= "elems">
+    <ul class="elems-detail" id="meeting_list">
+    </ul>  
+    
+  
+  </li>
+
+  <li class="title">
+    <h3>Members</h3>
+    <br />
+    <a class="elem-title" id="invite_url">
+      Invite People
+    </a>
+    </li>
+    <li class= "elems">
+      <ul class="elems-detail" id="member_list">
+        
+      </ul>  
+          
+    </li>
+         
+</ul>
+<!-- partial -->
+<script src="jquery-3.5.1.min.js"></script>
+<script src="utilities.js"></script>
+<script src="groups.js"></script>  
+
+
+</body>
+</html>
+
+
+<h1>{{.PageTitle}}</h1>
+<ul class="list">
+    {{range .Groups}}
+        <li>{{.GroupID}}</li>
+        <li>{{.Description}}</li>
+        <li>{{.Name}}</li>
+        <li>{{.CreatorID}}</li>
+        <li>{{.CreateDate}}</li>
+    {{end}}
+</ul>
