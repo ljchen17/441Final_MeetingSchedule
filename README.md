@@ -1,10 +1,9 @@
 # Meeting Scheduler
 Final project for INFO 441
 
+Group Members: ~~Nalin Gupta, Divit Jawa~~, Lizzy Chen, Huan Wang
 
-Group Members: Nalin Gupta, Divit Jawa, Lizzy Chen, Huan Wang
-
-# Project description
+## Project description
 
 Meeting Schedule helps teams solve the difficulty of scheduling a meeting time. It’s a simple but powerful app for anyone who works or studies in a team. Each of the team members only needs to select their available time within the range the host set, then the app will automatically calculate the best available time for everyone. 
 ​There are many similar apps online, such as when2meet, Google Calendar. We want to build a new one that is more user-friendly and powerful than when2meet, but more simple and light-weighted than Google Calendar. We want to build a more instinctive and simple UI so that anyone with an invite link can use the app easily. At the same time, we want to offer more useful functionalities for the registered user, such as managing their events, creating new events, sharing, etc. 
@@ -35,13 +34,20 @@ Students/people who are working in a team, and want to schedule a time for meeti
 * Allow user to put preference in the time slot
 * Automatically generate a suggested meeting time based on people’s preference
 
-### Comparative analysis
+## Individual Task
 
-* When2Meet: When2Meet has an un-intuitive UI and is difficult to operate on a mobile phone. Another disadvantage of When2Meet is the need to specify your schedule each time you use it for meeting with a group. 
-* Google Calendar: Although it allows people to check free time spots of other people, it does not provide functionality to compare multiple people’s schedules. What’s more, it is not giving users the option to choose where they want to meet.
-* Doodle: Doodle is an app that allows an event host to send a survey for the best meeting times. However, Doodle requires attendees to fill out their best times for each individual event.
+*Not original Tasks*
 
-# Architecture:
+| Team Member | Task                                                         |
+| :---------- | ------------------------------------------------------------ |
+| Lizzy Chen  | - User session microserver<br />- Write user story<br />- *System design diagram*<br />- *Frontend: connection, stylize*<br />- *Deployment* |
+| Huan Wang   | - Group microserver<br />- Proposal and document writing<br />- *System design diagram*<br />- *Guest microserver*<br />- *Frontend: html page* |
+| Divit Jawa  | ~~- Frontend~~<br />~~- System design diagram~~              |
+| Nalin Gupta | - Write endpoints<br />~~- Guest microserver<br />- Deployment~~ |
+
+Here is the repo before we divide the team: https://github.com/uwhuan/MeetingScheduler
+
+## Architecture:
 
 <img src="Architecture Diagram.png" alt="architecture_diagram" style="zoom:75%;" />
 
@@ -61,14 +67,14 @@ Details: https://app.lucidchart.com/invitations/accept/3428ba22-3cdc-4bc7-9db3-3
 | P0       | As a user                  | I want to create an account                                  | Upon receiving a POST request to /v1/users/create, the gateway creates a new user account and stores it in the database. |
 | P1       | As a registered user       | I want to log into my account                                | Upon receiving a POST request to /v1/sessions, the gateway verifies the user credentials and shows the user profile. |
 | P1       | As a registered user       | I want to log out my account                                 | Upon receiving a DELETE request to /v1/sessions, the gateway verifies the user credentials and signs out the user. |
-| P1       | As a user                  | I want to add my time availability to a meeting group        | Upon receiving PATCH request to /v1/groups/{groupsid}, the calendar microservices will check the DB and update the availability. |
+| P1       | As a user                  | I want to register my time availability to a meeting group   | Upon receiving PATCH request to /v1/groups/{groupsid}, the calendar microservices will check the DB and update the availability. |
 | P1       | As a user                  | I want to join a meeting                                     | Upon receiving a PATCH request to /v1/groups/{groupsid}/meetings/{meetingsid}/{auto_generated_invitation}, group service will add the user to the meeting. If the user didn’t registered, it will create an anonymous user and add it to the meeting |
-| P1       | As a registered user       | I want to see a user&#39;s profile by given ID               | Upon receiving a GET request to /v1/users/profiles/{usersid}, the users microservice shows the user under the specific id. |
+| P1       | As a registered user       | I want to see my profile by given ID                         | Upon receiving a GET request to /v1/users/profiles/{usersid}, the users microservice shows the user under the specific id. |
 | P1       | As a registered user       | I want to update my user profile                             | Upon receiving a PATCH request to /v1/users/profiles/{usersid}, the users microservice will check in the DB and update the profile. |
 | P1       | As a registered user       | I want to view all the meetings I have attended/will be attending/have created | Upon receiving a GET request to /v1/users/meetings?viewtype=all, the groups microservice shows a list of meetings under the current user. Viewtype could be “all”, “past” or “future”. Another parameter “time” can specify to return only ones the user has created |
 | P1       | As a registered user       | I want to see a meeting profile by given ID                  | Upon receiving a GET request to /v1/users/meetings/{meetingid}, the users microservice shows the meetings under the specific id. |
 | P1       | As a registered user       | I want to view all my meeting groups                         | Upon receiving a GET request to /v1/users/{usersid}/groups, the groups microservice shows a list of groups under the current user. |
-| P1       | As a meeting group creator | I want to delete a meeting I have created                    | Upon receiving a DELETE request to /v1/groups/{groupsid}/meetings/{meetingid}, the groups microservice deletes meetings from the DB and closes all websockets connected to the meetings. |
+|          |                            |                                                              |                                                              |
 
 # Endpoints
 
@@ -98,7 +104,7 @@ Details: https://app.lucidchart.com/invitations/accept/3428ba22-3cdc-4bc7-9db3-3
   * 415: Content-Type Provided is not JSON
   * 500: Internal server error.
 
-## Sessions        
+## Sessions     
 
 ### /v1/sessions
 
@@ -116,7 +122,13 @@ Details: https://app.lucidchart.com/invitations/accept/3428ba22-3cdc-4bc7-9db3-3
   * 403: The user is attempting to end another user's session.
   * 500: Internal server error
 
-## Meetings user specific 
+## Groups and Meetings 
+
+You can refer to a detailed API 
+
+[here]: https://github.com/uwhuan/441Final_MeetingSchedule/tree/master/servers/group
+
+
 
 ### /v1/users/meetings 
 
