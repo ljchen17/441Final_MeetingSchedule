@@ -51,34 +51,10 @@
     
   
   </li>
-         
-  <li class="title">
-  <h3>Meetings</h3>
-  <br />
-  <a class="elem-name" href="meeting-create.html" id="create_url">
-    Create Meeting
-  </a>
-  </li>
-  <li class= "elems">
-    <ul class="elems-detail" id="meeting_list">
-    </ul>  
+
     
   
-  </li>
 
-  <li class="title">
-    <h3>Members</h3>
-    <br />
-    <a class="elem-title" id="invite_url">
-      Invite People
-    </a>
-    </li>
-    <li class= "elems">
-      <ul class="elems-detail" id="member_list">
-        
-      </ul>  
-          
-    </li>
          
 </ul>
 <!-- partial -->
@@ -89,15 +65,3 @@
 
 </body>
 </html>
-
-
-<h1>{{.PageTitle}}</h1>
-<ul class="list">
-    {{range .Groups}}
-        <li>{{.GroupID}}</li>
-        <li>{{.Description}}</li>
-        <li>{{.Name}}</li>
-        <li>{{.CreatorID}}</li>
-        <li>{{.CreateDate}}</li>
-    {{end}}
-</ul>
