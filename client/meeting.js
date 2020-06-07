@@ -26,6 +26,7 @@ $(document).ready(function () {
             let meetingInfo = meetingData.MeetingInfo;
             let schedules = meetingData.Schedules? meetingData.Schedules : [];
             let members = meetingData.Participants ? meetingData.Participants : [];
+            let guests = meetingData.Guests ? meetingData.Guests : [];
 
             // set group general information
             $("#meeting_name").html(meetingInfo.name);
@@ -75,6 +76,14 @@ $(document).ready(function () {
                 var userData = members[userId];
                 var emailLink = "<br/><a href='mailto:" + userData.email + "'>" + userData.email + "</a>";
                 var nameDetails = userData.firstName + " " + userData.lastName + " " + emailLink;
+
+                $("#participants_list").prepend("<li><span class='elem-title'>" + nameDetails + "</span></li>");
+            }
+
+            for (userId in guests) {
+                var userData = guests[userId];
+                var emailLink = "<br/><a href='mailto:" + userData.email + "'>" + userData.email + "</a>";
+                var nameDetails = userData.name + " " + emailLink;
 
                 $("#participants_list").prepend("<li><span class='elem-title'>" + nameDetails + "</span></li>");
             }
