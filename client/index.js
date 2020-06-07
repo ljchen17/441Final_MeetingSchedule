@@ -59,7 +59,7 @@ $(document).ready(function () {
             // The response is passed to the function
             .done(function (data, textStatus, request) {
                 createCookie('auth-token', request.getResponseHeader('Authorization'), 1);
-                window.location = "group-create.html";
+                window.location = "https://api.ljchen17.me/v1/user/groups";
             })
             // Code to run if the request fails; the raw request and
             // status codes are passed to the function
