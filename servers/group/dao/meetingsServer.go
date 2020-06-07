@@ -9,6 +9,7 @@ import (
 
 var queryGetMeeting = "SELECT meetingID, name, description, creatorID, startTime, endTime, createDate, confirmed, groupID FROM meetings where meetingID = ?"
 var queryGetAllByGroup = "SELECT name, description, creatorID, startTime, endTime, createDate, confirmed, meetingID, groupID FROM meetings where groupID = ?"
+var queryGetAllByUser = "SELECT name, description, creatorID, startTime, endTime, createDate, confirmed, meetingID, groupID FROM meetings m INNER JOIN meetingparticipant p ON m.meetingID = p.meetingID where p/uid = ?"
 var queryInsertMeeting = "INSERT INTO meetings(name, description, creatorID, startTime, endTime, createDate, confirmed, groupID) VALUES (?,?,?,?,?,?,?,?)"
 var queryUpdateMeeting = "UPDATE meetings SET name = ?, description = ? WHERE meetingID = ?"
 var queryDeleteMeeting = "DELETE FROM meetings WHERE meetingID = ?"
@@ -39,6 +40,31 @@ func (store *Store) GetMeetingByID(id int64) (*model.Meeting, error) {
 func (store *Store) GetAllMeetingsOfGroup(id int64) ([]*model.Meeting, error) {
 	var meetings []*model.Meeting
 	rows, err := store.Db.Query(queryGetAllByGroup, id)
+	if err != nil {
+		return meetings, err
+	}
+
+	defer rows.Close()
+
+	for rows.Next() {
+		var meeting model.Meeting
+		err = rows.Scan(&meeting.Name, &meeting.Description, &meeting.CreatorID,
+			&meeting.StartTime, &meeting.EndTime, &meeting.CreateDate, &meeting.Confirmed,
+			&meeting.MeetingID, &meeting.GroupID)
+		if err != nil {
+			return meetings, err
+		}
+		meetings = append(meetings, &meeting)
+	}
+
+	// get any error encountered during iteration
+	return meetings, rows.Err()
+}
+
+//GetAllMeetingsOfGroup returns all the meeting with the given groupID
+func (store *Store) GetAllMeetingsOfUser(id int64) ([]*model.Meeting, error) {
+	var meetings []*model.Meeting
+	rows, err := store.Db.Query(queryGetAllByUser, id)
 	if err != nil {
 		return meetings, err
 	}

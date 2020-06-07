@@ -593,3 +593,61 @@ func (ctx *Context) SpecificScheduleHandler(w http.ResponseWriter, r *http.Reque
 	}
 
 }
+
+// UserGroupsHandler handles request for getting all groups of a user
+func (ctx *Context) UserGroupsHandler(w http.ResponseWriter, r *http.Request) {
+
+	uid := getCurrentUser(w, r)
+	if uid < 0 {
+		return
+	}
+
+	if r.Method != "GET" {
+		http.Error(w, errUnsuportMethod, http.StatusMethodNotAllowed)
+		return
+	}
+
+	if r.Method == "GET" {
+		group, err := ctx.Store.GetAllGroupsByUser(uid)
+		if !dbErrorHandle(w, "Get all groups", err) {
+			return
+		}
+
+		res := marshalRep(w, group)
+		if res == nil {
+			return
+		}
+
+		respondWithHeader(w, typeJSON, res, http.StatusCreated)
+	}
+
+}
+
+// UserMeetingsHandler handles request for getting all meetings of a user
+func (ctx *Context) UserMeetingsHandler(w http.ResponseWriter, r *http.Request) {
+
+	uid := getCurrentUser(w, r)
+	if uid < 0 {
+		return
+	}
+
+	if r.Method != "GET" {
+		http.Error(w, errUnsuportMethod, http.StatusMethodNotAllowed)
+		return
+	}
+
+	if r.Method == "GET" {
+		group, err := ctx.Store.GetAllMeetingsOfUser(uid)
+		if !dbErrorHandle(w, "Get all meetings", err) {
+			return
+		}
+
+		res := marshalRep(w, group)
+		if res == nil {
+			return
+		}
+
+		respondWithHeader(w, typeJSON, res, http.StatusCreated)
+	}
+
+}
