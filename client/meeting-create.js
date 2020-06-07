@@ -25,7 +25,7 @@ $(document).ready(function () {
             // Code to run if the request succeeds (is done);
             // The response is passed to the function
             .done(function (newMeetingDetails) {
-                window.location = "meeting.html?"+ newMeetingDetails.meetingID;
+                window.location = "meeting.html?mid="+ newMeetingDetails.meetingID + "&gid=" + urlParams.get('id');
             })
             // Code to run if the request fails; the raw request and
             // status codes are passed to the function
