@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"html/template"
 	"log"
 	"net/http"
 	"os"
@@ -23,9 +24,11 @@ func main() {
 		log.Fatalf("Error opening database: %v", err)
 	}
 
+	tmpl := template.Must(template.ParseFiles("/static/example.html"))
 	//context
 	ctx := h.Context{
 		Store: &dao.Store{db},
+		Tml:   tmpl,
 	}
 
 	// handlers

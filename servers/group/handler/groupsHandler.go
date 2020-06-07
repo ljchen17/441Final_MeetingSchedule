@@ -594,6 +594,11 @@ func (ctx *Context) SpecificScheduleHandler(w http.ResponseWriter, r *http.Reque
 
 }
 
+type TodoPageData struct {
+	PageTitle string
+	Groups    []*model.Group
+}
+
 // UserGroupsHandler handles request for getting all groups of a user
 func (ctx *Context) UserGroupsHandler(w http.ResponseWriter, r *http.Request) {
 
@@ -608,17 +613,28 @@ func (ctx *Context) UserGroupsHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if r.Method == "GET" {
-		group, err := ctx.Store.GetAllGroupsByUser(uid)
+		groups, err := ctx.Store.GetAllGroupsByUser(uid)
 		if !dbErrorHandle(w, "Get all groups", err) {
 			return
 		}
 
-		res := marshalRep(w, group)
-		if res == nil {
-			return
-		}
+		// res := marshalRep(w, group)
+		// if res == nil {
+		// 	return
+		// }
+		// var groups []model.Group
+		// g1 := model.Group{GroupID: 1, Name: "Name1", Description: "Description1", CreateDate: "CreateDate1", CreatorID: 123}
+		// groups = append(groups, g1)
+		// g2 := model.Group{GroupID: 2, Name: "Name2", Description: "Description2", CreateDate: "CreateDate2", CreatorID: 456}
+		// groups = append(groups, g2)
 
-		respondWithHeader(w, typeJSON, res, http.StatusCreated)
+		data := TodoPageData{
+			PageTitle: "Group List",
+			Groups:    groups,
+		}
+		// tmpl, _ := template.ParseFiles("example.html")
+		ctx.Tml.Execute(w, data)
+		// respondWithHeader(w, typeJSON, res, http.StatusCreated)
 	}
 
 }

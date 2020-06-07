@@ -6,7 +6,7 @@ import (
 )
 
 var queryGetGroup = "SELECT groupID, name, description, creatorID, createDate FROM userGroups where groupID = ?"
-var queryGetAllGroupByUser = "SELECT groupID, name, description, creatorID, createDate FROM userGroups m INNER JOIN membership p ON m.groupID = p.groupID where p.uid = ?"
+var queryGetAllGroupByUser = "SELECT m.groupID, m.name, m.description, m.creatorID, m.createDate FROM userGroups m INNER JOIN membership p ON m.groupID = p.groupID where p.uid = ?"
 var queryInsertGroup = "INSERT INTO userGroups(name, description, creatorID, createDate) VALUES (?,?,?,?)"
 var queryUpdateGroup = "UPDATE userGroups SET name = ?, description = ? WHERE groupID = ?"
 var queryDeleteGroup = "DELETE FROM userGroups WHERE groupID = ?"
