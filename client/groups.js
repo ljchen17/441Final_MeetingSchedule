@@ -29,7 +29,6 @@ $(document).ready(function () {
             // set group general information
             $("#group_name").html(groupInfo.name);
             $("#description").html(groupInfo.description);
-            $("#group_id").html(groupInfo.groupID);
             $("#create_date").html(groupInfo.createDate);
 
             $.ajax({

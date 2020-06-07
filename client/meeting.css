@@ -190,3 +190,11 @@ h3 {
     margin: 0;
   }
 }
+
+input[type=date]{
+  color:#000;
+}
+
+input[type=text]{
+  color:#000;
+}
