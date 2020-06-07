@@ -67,33 +67,20 @@ $(document).ready(function () {
 
             // put each meeting in the meeting list
             for (meeting in meetings) {
-                // prepare notes
-                let span = document.createElement("span");
-                let para = document.createElement("p");
-                let ahref = document.createElement("a")
-                let li = document.createElement("li");
-                let span_title = document.createTextNode("Meeting Name: " + meeting.name);
-                let para_text = document.createTextNode(meeting.description);
-                let attr = document.createAttribute("class");
-                let attr_link = document.createAttribute("href");
+                var meetingDetails = meetings[meeting];
+                var htmlToAdd = `
+                      <li>
+                        <a href="meeting.html?mid=${meetingDetails.meetingID}&gid=${urlParams.get('id')}">
+                          <span class="elem-title">Meeting Name:</span>
+                          <span class="elem-name">${meetingDetails.name}</span>
+                          <br />
+                          <span class="elem-title">Description:</span>
+                          <span class="elem-name">${meetingDetails.description}</span>
+                        </a>
+                      </li>
+                `;
 
-                // set attribute values
-                attr.value = "elem-title";
-                span.attr(attr);
-                attr.value = "elem-name";
-                para.attr(attr);
-                attr_link = "https://api.ljchen17.me/v1/groups/" + meeting.meetingID;
-
-                // append the nodes
-                span.appendChild(span_title);
-                para.appendChild(para_text);
-
-                ahref.appendChild(span);
-                ahref.appendChild(para);
-
-                li.appendChild(ahref);
-
-                $("#meeting_list").append(li);
+                $("#meeting_list").append(htmlToAdd);
             }
 
             for (userId in members) {

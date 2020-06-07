@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Meeting Scheduler</title>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+    <link rel="stylesheet" href="./submitForm.css">
     <link rel="stylesheet" href="./style.css">
 
 </head>
@@ -14,6 +16,9 @@
 
     <div class="container">
         <div class="frame">
+
+            <h1>Welcome To Meeting Scheduler! </h1>
+
             <div class="nav">
                 <ul class"links">
                     <li class="signin-active"><a class="btn">Sign in</a></li>
@@ -21,31 +26,69 @@
                 </ul>
             </div>
             <div ng-app ng-init="checked = false">
-                <form class="form-signin" action="" method="post" name="form">
-                    <label for="username">Email</label>
-                    <input id="emailInputLogin" class="form-styling" type="text" name="username" placeholder="" />
-                    <label for="password">Password</label>
-                    <input id="passwordInputLogin" class="form-styling" type="password" name="password" placeholder="" />
-                    <br />
+
+                <form id="form" class="form-signin" action="" method="post" name="form">
+    
+                    <div class="group">      
+                      <input type="text" id="emailInputLogin" required>
+                      <span class="highlight"></span>
+                      <span class="bar"></span>
+                      <label>Email</label>
+                    </div>
+                      
+                    <div class="group">      
+                      <input type="password" id="passwordInputLogin" required>
+                      <span class="highlight"></span>
+                      <span class="bar"></span>
+                      <label>Password</label>
+                    </div>
                     <div class="btn-animate">
                         <a id="loginbtn" class="btn-signin">Sign in</a>
                     </div>
-                </form>
+                
+                  </form>
 
-                <form class="form-signup" action="" method="post" name="form">
-                    <label for="firstname">First Name</label>
-                    <input id="firstNameInput" class="form-styling" type="text" name="firstname" placeholder="" />
-                    <label for="lastname">Last Name</label>
-                    <input id="lastNameInput" class="form-styling" type="text" name="lastname" placeholder="" />
-                    <label for="email">Email</label>
-                    <input id="emailInput" class="form-styling" type="text" name="email" placeholder="" />
-                    <label for="password">Password</label>
-                    <input id="passwordInput" class="form-styling" type="password" name="password" placeholder="" />
-                    <label for="confirmpassword">Confirm password</label>
-                    <input id="passwordConfInput" class="form-styling" type="password" name="confirmpassword"
-                        placeholder="" />
-                    <a ng-click="checked = !checked" id="submitbtn" class="btn-signup">Sign Up</a>
-                </form>
+                  <form id="form" class="form-signup" action="" method="post" name="form">
+    
+                    <div class="group">      
+                      <input type="text" id="firstNameInput" required>
+                      <span class="highlight"></span>
+                      <span class="bar"></span>
+                      <label>First Name</label>
+                    </div>
+                      
+                    <div class="group">      
+                      <input type="text" id="lastNameInput" required>
+                      <span class="highlight"></span>
+                      <span class="bar"></span>
+                      <label>Last Name</label>
+                    </div>
+
+                      <div class="group">      
+                        <input type="text" id="emailInput" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Email</label>
+                      </div>
+
+                      <div class="group">      
+                        <input type="password" id="passwordInput" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Password</label>
+                      </div>
+
+                      <div class="group">      
+                        <input type="password" id="passwordConfInput" required>
+                        <span class="highlight"></span>
+                        <span class="bar"></span>
+                        <label>Confirm password</label>
+                      </div>
+
+                      <a ng-click="checked = !checked" id="submitbtn" class="btn-signup">Sign Up</a>
+                
+                  </form>
+
 
                 <div class="success">
                     <svg width="270" height="270" xmlns="http://www.w3.org/2000/svg"
