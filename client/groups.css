@@ -134,6 +134,7 @@ h3 {
 
 .elems-detail {
   max-width: 550px;
+  min-height: 200px;
 }
 
 .elems-detail li {

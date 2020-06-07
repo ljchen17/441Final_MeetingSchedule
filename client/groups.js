@@ -94,22 +94,15 @@ $(document).ready(function () {
 
                 li.appendChild(ahref);
 
-                $("#meeting_list").appendChild(li);
+                $("#meeting_list").append(li);
             }
 
-            for (person in members) {
-                // prepare notes
-                let para = document.createElement("p");
-                let li = document.createElement("li");
-                let span_title = document.createTextNode(person.username);
-                let attr = document.createAttribute("class");
-                // set attribute values
-                attr.value = "elem-title";
-                para.attr(attr);
+            for (userId in members) {
+                var userData = members[userId];
+                var emailLink = "<br/><a href='mailto:" + userData.email + "'>" + userData.email + "</a>";
+                var nameDetails = userData.firstName + " " + userData.lastName + " " + emailLink;
 
-                para.appendChild(span_title);
-                li.appendChild(para);
-                $("#meeting_list").appendChild(li);
+                $("#member_list").append("<li><span class='elem-title'>" + nameDetails + "</span></li>");
             }
 
 
