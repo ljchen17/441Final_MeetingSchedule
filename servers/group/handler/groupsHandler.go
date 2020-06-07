@@ -207,7 +207,7 @@ func (ctx *Context) SpecificGroupsHandler(w http.ResponseWriter, r *http.Request
 		}
 
 		// Generate an invitation link with the email
-		link := fmt.Sprintf("%s/%s/guest/%d/groups/%d", r.Host, version, guestID, gid)
+		link := fmt.Sprintf("https://ljchen17.me/%s/%s/guest/%d/groups/%d", r.Host, version, guestID, gid)
 
 		// response with the link
 		respondWithHeader(w, typeText, []byte(link), http.StatusCreated)
@@ -443,7 +443,7 @@ func (ctx *Context) SpecificGroupsMeetingHandler(w http.ResponseWriter, r *http.
 		}
 
 		// Generate an invitation link with the email
-		link := fmt.Sprintf("%s/%s/guest/%d/meetings/%d", r.Host, version, guestID, mid)
+		link := fmt.Sprintf("https://ljchen17.me/%s/%s/guest/%d/meetings/%d", r.Host, version, guestID, mid)
 
 		// response with the link
 		respondWithHeader(w, typeText, []byte(link), http.StatusCreated)
