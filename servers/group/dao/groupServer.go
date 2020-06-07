@@ -6,6 +6,7 @@ import (
 )
 
 var queryGetGroup = "SELECT groupID, name, description, creatorID, createDate FROM userGroups where groupID = ?"
+var queryGetAllGroupByUser = "SELECT groupID, name, description, creatorID, createDate FROM userGroups m INNER JOIN membership p ON m.groupID = p.groupID where p.uid = ?"
 var queryInsertGroup = "INSERT INTO userGroups(name, description, creatorID, createDate) VALUES (?,?,?,?)"
 var queryUpdateGroup = "UPDATE userGroups SET name = ?, description = ? WHERE groupID = ?"
 var queryDeleteGroup = "DELETE FROM userGroups WHERE groupID = ?"
@@ -98,6 +99,30 @@ func (store *Store) GetAllGroups() ([]*model.Group, error) {
 	var groups []*model.Group
 	//uid, email, userName, firstName, lastName
 	rows, err := store.Db.Query(queryGetAllGroups)
+	if err != nil {
+		return groups, err
+	}
+
+	defer rows.Close()
+
+	for rows.Next() {
+		var g model.Group
+		err = rows.Scan(&g.GroupID, &g.Name, &g.Description, &g.CreatorID, &g.CreateDate)
+		if err != nil {
+			return groups, err
+		}
+		groups = append(groups, &g)
+	}
+
+	// get any error encountered during iteration
+	return groups, rows.Err()
+}
+
+//GetAllGroupsByUser gets all groups of a user in db
+func (store *Store) GetAllGroupsByUser(id int64) ([]*model.Group, error) {
+	var groups []*model.Group
+	//uid, email, userName, firstName, lastName
+	rows, err := store.Db.Query(queryGetAllGroupByUser, id)
 	if err != nil {
 		return groups, err
 	}

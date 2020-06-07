@@ -30,6 +30,9 @@ func main() {
 
 	// handlers
 	route := mux.NewRouter()
+	route.HandleFunc("/v1/user/groups", ctx.UserGroupsHandler)
+	route.HandleFunc("/v1/user/meetings", ctx.UserMeetingsHandler)
+
 	route.HandleFunc("/v1/groups", ctx.GroupsHandler)
 	route.HandleFunc("/v1/groups/{group_id}", ctx.SpecificGroupsHandler)
 	route.HandleFunc("/v1/groups/{group_id}/meetings", ctx.GroupsMeetingHandler)
