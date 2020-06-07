@@ -86,10 +86,12 @@ func main() {
 	groupDirector := func(r *http.Request) {
 		r.Header.Add(headerCORS, corsAnyOrigin)
 
-		session, _ := sessions.GetSessionID(r, ctx.SigningKey)
-
+		session, err := sessions.GetSessionID(r, ctx.SigningKey)
+		if err != nil {
+			return
+		}
 		stateRet := handlers.SessionState{}
-		err := ctx.SessionStore.Get(session, &stateRet)
+		err = ctx.SessionStore.Get(session, &stateRet)
 
 		if err != nil {
 			return

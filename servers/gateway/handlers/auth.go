@@ -104,13 +104,15 @@ func (ctx *HandlerCtx) SpecificUserHandler(w http.ResponseWriter, r *http.Reques
 		return
 	}
 
-	session, _ := sessions.GetSessionID(r, ctx.SigningKey)
-
+	session, err := sessions.GetSessionID(r, ctx.SigningKey)
+	if err != nil {
+		http.Error(w, "Error Getting Session", http.StatusBadRequest)
+		return
+	}
 	stateRet := SessionState{}
 	ctx.SessionStore.Get(session, &stateRet)
 
 	var user *model.User
-	var err error
 	var userID int64
 	urlID := path.Base(r.URL.Path)
 	// Get user ID

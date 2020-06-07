@@ -13,7 +13,12 @@
 }
 
 body {
-  background: #456789;
+  background:
+    linear-gradient(
+    rgba(35,43,85,0.75),
+    rgba(35,43,85,0.95)),
+    url(https://dl.dropboxusercontent.com/u/22006283/preview/codepen/clouds-cloudy-forest-mountain.jpg) no-repeat center center;
+  
 }
 
 ul {
@@ -105,22 +110,18 @@ h3 {
   margin: 0;
 }
 
-.title {
+.date {
   width: 17%;
   padding: 15% 1% 0 0;
   float: left;
 }
 
-.title h3 {
+.date h3 {
   font-size: 1.5em;
 }
 
-.title p {
+.date p {
   font-size: .8em;
-}
-
-.tim{
-  color: black;
 }
 
 .events {
@@ -152,7 +153,7 @@ h3 {
 
 .events-detail li a {
   text-decoration: none;
-  color: #444;
+  color: #f9f942;
   width: 100%;
   height: 100%;
   display: block;
@@ -164,6 +165,10 @@ h3 {
   margin-left: 70px;
 }
 
+.btn {
+  color: black;
+  margin-left: 70px;
+}
 @media all and (max-width: 641px) {
   .date {
     width: 100%;
