@@ -40,8 +40,7 @@ $(document).ready(function () {
         $.ajax({
 
             // The URL for the request
-            // url: "https://api.ljchen17.me/v1/sessions",
-            url: "http://ljchen17.me/v1/sessions",
+            url: "https://api.ljchen17.me/v1/sessions",
 
             // The data to send (will be converted to a query string)
             data: JSON.stringify({
@@ -60,7 +59,7 @@ $(document).ready(function () {
             // The response is passed to the function
             .done(function (data, textStatus, request) {
                 createCookie('auth-token', request.getResponseHeader('Authorization'), 1);
-                window.location.replace("http://ljchen17.me/v1/user/groups?id=" + data.uid);
+                window.location.replace("https://ljchen17.me/group-create.html");
             })
             // Code to run if the request fails; the raw request and
             // status codes are passed to the function
@@ -81,8 +80,7 @@ $(document).ready(function () {
         $.ajax({
 
             // The URL for the request
-            // url: "https://api.ljchen17.me/v1/users/create",
-            url: "http://ljchen17.me/v1/users/create",
+            url: "https://api.ljchen17.me/v1/users/create",
 
             // The data to send (will be converted to a query string)
             data: JSON.stringify({
@@ -105,7 +103,7 @@ $(document).ready(function () {
             // The response is passed to the function
             .done(function (jsonData, textStatus, request) {
                 createCookie('auth-token', request.getResponseHeader('Authorization'), 1);
-                window.location.replace("http://ljchen17.me/v1/user/groups?id=" + jsonData.uid);
+                window.location.replace("https://ljchen17.me/group-create.html");
             })
             // Code to run if the request fails; the raw request and
             // status codes are passed to the function

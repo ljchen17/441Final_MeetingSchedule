@@ -42,11 +42,11 @@ func main() {
 
 	ADDR := os.Getenv("ADDR")
 	if len(ADDR) == 0 {
-		ADDR = ":80"
+		ADDR = ":443"
 	}
 
-	// tlsKey := reqEnv("TLSKEY")
-	// tlsCert := reqEnv("TLSCERT")
+	tlsKey := reqEnv("TLSKEY")
+	tlsCert := reqEnv("TLSCERT")
 	sessionKey := reqEnv("SESSIONKEY")
 	redisAddr := reqEnv("REDISADDR")
 	dsn := reqEnv("DSN")
@@ -128,7 +128,6 @@ func main() {
 
 	// Start the server
 	log.Printf("Server is listening at %s...", ADDR)
-	// log.Fatal(http.ListenAndServeTLS(ADDR, tlsCert, tlsKey, handlers.SetCors(r)))
-	log.Fatal(http.ListenAndServe(ADDR, handlers.SetCors(r)))
+	log.Fatal(http.ListenAndServeTLS(ADDR, tlsCert, tlsKey, handlers.SetCors(r)))
 
 }
