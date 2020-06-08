@@ -24,13 +24,16 @@ func main() {
 		log.Fatalf("Error opening database: %v", err)
 	}
 
+	var tml []*template.Template
 	tmpl := template.Must(template.ParseFiles("/static/group_list.html"))
-	// tmpl2 := template.Must(template.ParseFiles("/static/meeting_list.html"))
+	tmpl2 := template.Must(template.ParseFiles("/static/meeting_list.html"))
+	tml = append(tml, tmpl)
+	tml = append(tml, tmpl2)
+
 	//context
 	ctx := h.Context{
 		Store: &dao.Store{db},
-		Tml:   tmpl,
-		// Tml2:  tmpl2,
+		Tml:   tml,
 	}
 
 	// handlers

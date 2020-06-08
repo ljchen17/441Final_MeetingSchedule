@@ -9,5 +9,5 @@ import (
 type Context struct {
 	Sid   int64
 	Store *dao.Store
-	Tml   *template.Template
+	Tml   []*template.Template
 }

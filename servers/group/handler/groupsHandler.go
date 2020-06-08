@@ -4,7 +4,9 @@ import (
 	"MeetingScheduler/servers/group/model"
 	"fmt"
 	"net/http"
+	"net/url"
 	"path"
+	"strconv"
 )
 
 var errUnsuportMethod = "Unsupported Methods"
@@ -601,11 +603,17 @@ type TodoPageData struct {
 
 // UserGroupsHandler handles request for getting all groups of a user
 func (ctx *Context) UserGroupsHandler(w http.ResponseWriter, r *http.Request) {
-
-	uid := getCurrentUser(w, r)
-	if uid < 0 {
+	u, err := url.Parse(r.URL.String())
+	if err != nil {
 		return
 	}
+	q := u.Query()
+	uid, _ := strconv.ParseInt(q.Get("id"), 10, 64)
+
+	// uid := getCurrentUser(w, r)
+	// if uid < 0 {
+	// 	return
+	// }
 
 	if r.Method != "GET" {
 		http.Error(w, errUnsuportMethod, http.StatusMethodNotAllowed)
@@ -618,22 +626,12 @@ func (ctx *Context) UserGroupsHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		// res := marshalRep(w, group)
-		// if res == nil {
-		// 	return
-		// }
-		// var groups []model.Group
-		// g1 := model.Group{GroupID: 1, Name: "Name1", Description: "Description1", CreateDate: "CreateDate1", CreatorID: 123}
-		// groups = append(groups, g1)
-		// g2 := model.Group{GroupID: 2, Name: "Name2", Description: "Description2", CreateDate: "CreateDate2", CreatorID: 456}
-		// groups = append(groups, g2)
-
 		data := TodoPageData{
 			PageTitle: "Group List",
 			Groups:    groups,
 		}
 		// tmpl, _ := template.ParseFiles("example.html")
-		ctx.Tml.Execute(w, data)
+		ctx.Tml[0].Execute(w, data)
 		// respondWithHeader(w, typeJSON, res, http.StatusCreated)
 	}
 
@@ -642,10 +640,12 @@ func (ctx *Context) UserGroupsHandler(w http.ResponseWriter, r *http.Request) {
 // UserMeetingsHandler handles request for getting all meetings of a user
 func (ctx *Context) UserMeetingsHandler(w http.ResponseWriter, r *http.Request) {
 
-	uid := getCurrentUser(w, r)
-	if uid < 0 {
+	u, err := url.Parse(r.URL.String())
+	if err != nil {
 		return
 	}
+	q := u.Query()
+	uid, _ := strconv.ParseInt(q.Get("uid"), 10, 64)
 
 	if r.Method != "GET" {
 		http.Error(w, errUnsuportMethod, http.StatusMethodNotAllowed)
@@ -662,7 +662,7 @@ func (ctx *Context) UserMeetingsHandler(w http.ResponseWriter, r *http.Request) 
 			PageTitle: "Group List",
 			Groups:    groups,
 		}
-		ctx.Tml.Execute(w, data)
+		ctx.Tml[1].Execute(w, data)
 	}
 
 }
